@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Text to Video Generator</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f1a;
+      color: #e0e0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      background: linear-gradient(90deg, #7c6af7, #e96dff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #888;
+      font-size: 1rem;
+    }
+
+    .card {
+      background: #1a1a2e;
+      border: 1px solid #2e2e4e;
+      border-radius: 16px;
+      padding: 32px;
+      width: 100%;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      color: #a78bfa;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #2e2e4e;
+      border-radius: 10px;
+      background: transparent;
+      color: #888;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      border-color: #7c6af7;
+      color: #fff;
+      background: rgba(124,106,247,0.15);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    textarea {
+      width: 100%;
+      background: #0f0f1a;
+      border: 1px solid #2e2e4e;
+      border-radius: 10px;
+      color: #e0e0f0;
+      padding: 14px;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 120px;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    textarea:focus { border-color: #7c6af7; }
+
+    .duration-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .duration-row label { font-size: 0.9rem; color: #888; }
+
+    .duration-row input[type=range] {
+      flex: 1;
+      accent-color: #7c6af7;
+    }
+
+    .duration-row span {
+      min-width: 48px;
+      text-align: right;
+      color: #a78bfa;
+      font-weight: 600;
+    }
+
+    .generate-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg, #7c6af7, #e96dff);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .generate-btn:hover { opacity: 0.88; }
+    .generate-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* Progress */
+    .progress-wrap {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .progress-wrap.visible { display: block; }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-bg {
+      background: #0f0f1a;
+      border-radius: 8px;
+      height: 10px;
+      overflow: hidden;
+      border: 1px solid #2e2e4e;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #7c6af7, #e96dff);
+      border-radius: 8px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    /* Video result */
+    .result-card {
+      display: none;
+      background: #1a1a2e;
+      border: 1px solid #2e2e4e;
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      max-width: 760px;
+      text-align: center;
+    }
+
+    .result-card.visible { display: block; }
+
+    .result-card h2 {
+      color: #a78bfa;
+      margin-bottom: 16px;
+    }
+
+    .result-card video {
+      width: 100%;
+      border-radius: 10px;
+      outline: none;
+      background: #000;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 12px 28px;
+      background: #7c6af7;
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .download-btn:hover { background: #6355e0; }
+
+    .error-msg {
+      display: none;
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: rgba(255,80,80,0.1);
+      border: 1px solid rgba(255,80,80,0.3);
+      border-radius: 8px;
+      color: #ff8080;
+      font-size: 0.9rem;
+    }
+
+    .error-msg.visible { display: block; }
+
+    footer {
+      margin-top: 40px;
+      color: #444;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎬 Text to Video Generator</h1>
+    <p>Convert any topic or script into an AI-generated educational video</p>
+  </header>
+
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('narration', this)">📖 Narration Video</button>
+      <button class="tab-btn" onclick="switchTab('animation', this)">✨ AI Animation</button>
+    </div>
+
+    <!-- NARRATION TAB -->
+    <div class="tab-content active" id="tab-narration">
+      <h2>Enter a topic or full script</h2>
+      <textarea id="narration-input" placeholder="e.g. Photosynthesis — or paste a full paragraph..."></textarea>
+      <button class="generate-btn" id="narration-btn" onclick="generateNarration()">🚀 Generate Narration Video</button>
+      <div class="progress-wrap" id="narration-progress">
+        <div class="progress-label">
+          <span id="narration-status">Processing...</span>
+          <span id="narration-pct">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="narration-bar"></div>
+        </div>
+      </div>
+      <div class="error-msg" id="narration-error"></div>
+    </div>
+
+    <!-- ANIMATION TAB -->
+    <div class="tab-content" id="tab-animation">
+      <h2>Describe your animation</h2>
+      <textarea id="animation-input" placeholder="e.g. A glowing solar system with planets orbiting the sun in deep space..."></textarea>
+      <div class="duration-row">
+        <label>Duration:</label>
+        <input type="range" id="duration-slider" min="5" max="30" value="10" oninput="updateDuration(this.value)"/>
+        <span id="duration-label">10s</span>
+      </div>
+      <button class="generate-btn" id="animation-btn" onclick="generateAnimation()">🎨 Generate Animation</button>
+      <div class="progress-wrap" id="animation-progress">
+        <div class="progress-label">
+          <span id="animation-status">Processing...</span>
+          <span id="animation-pct">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="animation-bar"></div>
+        </div>
+      </div>
+      <div class="error-msg" id="animation-error"></div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-card" id="result-card">
+    <h2>✅ Your Video is Ready!</h2>
+    <video id="result-video" controls></video>
+    <br/>
+    <a id="download-link" class="download-btn" download>⬇ Download Video</a>
+  </div>
+
+  <footer>Text to Video Generator &mdash; MindMatrix Final Year Project &mdash; Bharath Kumar</footer>
+
+  <script>
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + name).classList.add('active');
+      hideResult();
+    }
+
+    function updateDuration(val) {
+      document.getElementById('duration-label').textContent = val + 's';
+    }
+
+    function showProgress(prefix, pct, msg) {
+      const wrap = document.getElementById(prefix + '-progress');
+      const bar = document.getElementById(prefix + '-bar');
+      const status = document.getElementById(prefix + '-status');
+      const pctEl = document.getElementById(prefix + '-pct');
+      wrap.classList.add('visible');
+      bar.style.width = pct + '%';
+      status.textContent = msg || 'Processing...';
+      pctEl.textContent = pct + '%';
+    }
+
+    function hideProgress(prefix) {
+      document.getElementById(prefix + '-progress').classList.remove('visible');
+    }
+
+    function showError(prefix, msg) {
+      const el = document.getElementById(prefix + '-error');
+      el.textContent = msg;
+      el.classList.add('visible');
+    }
+
+    function hideError(prefix) {
+      document.getElementById(prefix + '-error').classList.remove('visible');
+    }
+
+    function showResult(videoUrl) {
+      const card = document.getElementById('result-card');
+      const video = document.getElementById('result-video');
+      const dl = document.getElementById('download-link');
+      video.src = videoUrl;
+      dl.href = videoUrl;
+      card.classList.add('visible');
+      card.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function hideResult() {
+      document.getElementById('result-card').classList.remove('visible');
+    }
+
+    async function generateNarration() {
+      const script = document.getElementById('narration-input').value.trim();
+      if (!script) { alert('Please enter a topic or script.'); return; }
+
+      hideError('narration');
+      hideResult();
+      const btn = document.getElementById('narration-btn');
+      btn.disabled = true;
+      showProgress('narration', 10, 'Sending request...');
+
+      try {
+        const res = await fetch('/api/generate-narration', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ script })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          showProgress('narration', 100, 'Video ready!');
+          showResult(data.video_url);
+        } else {
+          showError('narration', data.message || 'Generation failed.');
+        }
+      } catch (err) {
+        showError('narration', 'Network error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        hideProgress('narration');
+      }
+    }
+
+    async function generateAnimation() {
+      const description = document.getElementById('animation-input').value.trim();
+      const duration = document.getElementById('duration-slider').value;
+      if (!description) { alert('Please enter a description.'); return; }
+
+      hideError('animation');
+      hideResult();
+      const btn = document.getElementById('animation-btn');
+      btn.disabled = true;
+      showProgress('animation', 5, 'Queuing animation...');
+
+      try {
+        const res = await fetch('/api/generate-animation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ description, duration: parseInt(duration) })
+        });
+        const data = await res.json();
+
+        if (!data.success) {
+          showError('animation', data.message || 'Failed to start animation.');
+          btn.disabled = false;
+          return;
+        }
+
+        const jobId = data.job_id;
+        pollAnimationStatus(jobId, btn);
+
+      } catch (err) {
+        showError('animation', 'Network error: ' + err.message);
+        btn.disabled = false;
+      }
+    }
+
+    async function pollAnimationStatus(jobId, btn) {
+      const interval = setInterval(async () => {
+        try {
+          const res = await fetch('/api/animation-status/' + jobId);
+          const data = await res.json();
+
+          showProgress('animation', data.progress || 0, data.message || 'Generating...');
+
+          if (data.status === 'completed') {
+            clearInterval(interval);
+            btn.disabled = false;
+            hideProgress('animation');
+            showResult(data.video_url);
+          } else if (data.status === 'error') {
+            clearInterval(interval);
+            btn.disabled = false;
+            hideProgress('animation');
+            showError('animation', data.message || 'Animation generation failed.');
+          }
+        } catch (err) {
+          clearInterval(interval);
+          btn.disabled = false;
+          showError('animation', 'Polling error: ' + err.message);
+        }
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
