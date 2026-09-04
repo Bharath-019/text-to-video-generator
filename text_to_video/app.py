@@ -50,7 +50,10 @@ ANIMATION_TEMP_DIR = str(BASE_DIR / "generated_clips")
 
 FPS = 24
 TARGET_W, TARGET_H = 1280, 720
-PEXELS_API_KEY = "8WyHmBd0Edmd5grI44S1xWcWJivZgx26cQtShqROLqa9yiuFhhUAcCwi"
+from dotenv import load_dotenv
+import os
+load_dotenv()
+PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
 MAX_PEXELS_RESULTS = 15
 MATCH_TOKEN_THRESHOLD = 1
 

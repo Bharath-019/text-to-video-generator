@@ -1,0 +1,498 @@
+{
+  "version": "1.0.0",
+  "schema_version": 1,
+  "project": {
+    "name": "text_to_video_project",
+    "is_monorepo": false,
+    "total_files": 3,
+    "entry_points": [
+      "text_to_video/app.py"
+    ],
+    "tech_stack": [],
+    "entry_candidates": [
+      "text_to_video/app.py"
+    ],
+    "graph_mode": "sparse"
+  },
+  "nodes": [
+    {
+      "id": "file:text_to_video/README.md",
+      "type": "document",
+      "filePath": "text_to_video/README.md",
+      "language": "markdown",
+      "symbolCount": 0,
+      "lineCount": 80,
+      "complexity": "simple",
+      "pagerank": 0.333333,
+      "communityId": 0,
+      "tags": [],
+      "summary": "Project overview and entry point for new readers."
+    },
+    {
+      "id": "file:text_to_video/app.py",
+      "type": "file",
+      "filePath": "text_to_video/app.py",
+      "language": "python",
+      "symbolCount": 41,
+      "lineCount": 723,
+      "complexity": "complex",
+      "pagerank": 0.333333,
+      "communityId": 1,
+      "tags": [
+        "entry_point"
+      ],
+      "summary": "Application module app defining get_t2v_pipe, index, normalize_tokens.",
+      "primaryOwner": "Bharath-019"
+    },
+    {
+      "id": "file:text_to_video/static/index.html",
+      "type": "file",
+      "filePath": "text_to_video/static/index.html",
+      "language": "html",
+      "symbolCount": 0,
+      "lineCount": 308,
+      "complexity": "moderate",
+      "pagerank": 0.333333,
+      "communityId": 2,
+      "tags": [],
+      "summary": "Application module index."
+    },
+    {
+      "id": "function:text_to_video/app.py:_keyphrase_from_sentence",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "_keyphrase_from_sentence",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:_score_photo_match",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "_score_photo_match",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:animation_download",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "animation_download",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:animation_status",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "animation_status",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:create_slideshow_from_images",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "create_slideshow_from_images",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:create_video",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "create_video",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:download_image_bytes",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "download_image_bytes",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:exit",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "exit",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:generate_animation_api",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "generate_animation_api",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:generate_animation_clip",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "generate_animation_clip",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:generate_audio",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "generate_audio",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:generate_captions_from_topic",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "generate_captions_from_topic",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:generate_long_video",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "generate_long_video",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:generate_narration_api",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "generate_narration_api",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:generate_timed_subtitles",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "generate_timed_subtitles",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:get_t2v_pipe",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "get_t2v_pipe",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:index",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "index",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:is_photo_match",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "is_photo_match",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:letterbox_image_from_bytes",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "letterbox_image_from_bytes",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:normalize_tokens",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "normalize_tokens",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:pairs_from_script",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "pairs_from_script",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:sanitize_filename",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "sanitize_filename",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:scrape_and_verify_images",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "scrape_and_verify_images",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    },
+    {
+      "id": "function:text_to_video/app.py:serve_video",
+      "type": "function",
+      "filePath": "text_to_video/app.py",
+      "name": "serve_video",
+      "language": "python",
+      "tags": [],
+      "summary": ""
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:_keyphrase_from_sentence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:_score_photo_match",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:animation_download",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:animation_status",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:create_slideshow_from_images",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:create_video",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:download_image_bytes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:exit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:generate_animation_api",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:generate_animation_clip",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:generate_audio",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:generate_captions_from_topic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:generate_long_video",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:generate_narration_api",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:generate_timed_subtitles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:get_t2v_pipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:index",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:is_photo_match",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:letterbox_image_from_bytes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:normalize_tokens",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:pairs_from_script",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:sanitize_filename",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:scrape_and_verify_images",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:text_to_video/app.py",
+      "target": "function:text_to_video/app.py:serve_video",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:application",
+      "name": "Application",
+      "description": "",
+      "nodeIds": [
+        "file:text_to_video/README.md",
+        "file:text_to_video/app.py",
+        "file:text_to_video/static/index.html"
+      ],
+      "display_order": 0,
+      "order_basis": "canonical"
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "target_path": "text_to_video/README.md",
+      "page_type": "repo_overview",
+      "title": "README.md",
+      "depth": 0,
+      "kind": "overview",
+      "reason": "Start here for the end-to-end picture before diving into the code.",
+      "layer_id": "layer:application"
+    },
+    {
+      "order": 2,
+      "target_path": "text_to_video/app.py",
+      "page_type": "file_page",
+      "title": "app.py",
+      "depth": 0,
+      "kind": "code",
+      "reason": "An entry point \u2014 execution and imports fan out from here.",
+      "layer_id": "layer:application"
+    }
+  ],
+  "modules": [
+    {
+      "id": "module:text-to-video",
+      "name": "Application",
+      "path": "text_to_video",
+      "layerId": "layer:application",
+      "nodeIds": [
+        "file:text_to_video/README.md",
+        "file:text_to_video/app.py",
+        "file:text_to_video/static/index.html"
+      ],
+      "wholeLayer": true,
+      "language": "html"
+    }
+  ]
+}

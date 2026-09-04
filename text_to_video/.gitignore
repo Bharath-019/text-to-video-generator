@@ -1,0 +1,9 @@
+.env
+key.env
+__pycache__/
+*.pyc
+.repowise/
+videos/
+images/
+audio/
+generated_clips/
